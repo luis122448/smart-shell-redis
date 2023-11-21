@@ -4,15 +4,16 @@ services:
   postgres:
     container_name: redis-smart-shell
     image: redis-stack-server
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1073741824
-      POSTGRES_DB: smart-shell
     ports:
       - "6379:6379"
     networks:
       - smart-shell-net  # Conexión a la red smart-shell-net
+    command: redis-server --requirepass 1073741824 --maxmemory 1gb --maxmemory-policy volatile-lru
 
 networks:
   smart-shell-net:  # Definición de la red smart-shell-net
     external: true   # Indicador de que la red ya está creada externamente
+deploy:
+  resources:
+    limits:
+      memory: 1G # Límite de memoria para el contenedor
