@@ -8,7 +8,7 @@ Este repositorio tiene como objetivo automatizar el despliegue de una base de da
 
 1. **Clonación del Repositorio:**
     ```bash
-        git clone https://github.com/luis122448/smart-shell-postgres.git
+        git clone https://github.com/luis122448/smart-shell-redis.git
     ```
 
 2. **Modificación del Archivo de Configuración:**
@@ -28,19 +28,19 @@ Este repositorio tiene como objetivo automatizar el despliegue de una base de da
 
 4. **Creación de la Imagen:**
     ```bash
-        cd smart-shell-postgres
-        docker build -t smart-shell-postgres .
+        cd smart-shell-redis
+        docker build -t smart-shell-redis .
     ```
 
 5. **Despliegue de la Base de Datos:**
     ```bash
-        cd smart-shell-postgres
+        cd smart-shell-redis
         docker-compose up -d
     ```
 
 6. **Conexion a la Base de Datos.**
     ```bash
-        docker exec -it postgres-smart-shell bash
+        docker exec -it redis-smart-shell bash
     ```
 
 7. **Verificando las versiones.**
