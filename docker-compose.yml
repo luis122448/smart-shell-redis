@@ -1,9 +1,9 @@
 version: '3.8'  # Puedes ajustar la versión según la que desees usar
 
 services:
-  postgres:
+  redis:
     container_name: redis-smart-shell
-    image: redis-stack-server
+    image: redis/redis-stack
     ports:
       - "6379:6379"
     networks:
@@ -13,7 +13,3 @@ services:
 networks:
   smart-shell-net:  # Definición de la red smart-shell-net
     external: true   # Indicador de que la red ya está creada externamente
-deploy:
-  resources:
-    limits:
-      memory: 1G # Límite de memoria para el contenedor
