@@ -60,7 +60,7 @@ Este repositorio tiene como objetivo automatizar el despliegue de una base de da
     ```
 
 ## Cadena de Conexion
- Configuracion para un proyecto de JAVA con SPRING BOOT (application.properties):
+ Configuracion para un proyecto de JAVA con SPRING BOOT (application.properties).
     ```properties
         # Configuración de Redis
         spring.redis.host=${REDIS_HOST:localhost}
