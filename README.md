@@ -6,29 +6,36 @@ Este repositorio tiene como objetivo automatizar el despliegue de una base de da
   
 ## Desplegando con DOCKER COMPOSE
 
-1. **Clonación del Repositorio:**
+1. **Clonar el Repositorio**
     ```bash
         git clone https://github.com/luis122448/smart-shell-redis.git
     ```
 
-2. **Modificación del Archivo de Configuración:**
+2. **Ingresar al directorio del proyecto**
+        
     ```bash
         cd smart-shell-redis
-        nano docker-compose.yml
-    ```
-    Modificar la contraseña y la memoria máxima de la base de datos Redis.
-    ```yml
-        ommand: redis-server --requirepass <password> --maxmemory 1gb --maxmemory-policy volatile-lru
     ```
 
-3. **Creación de la Red:**
+3. **Ejecutar el script de instalación**
+    
+    ```bash
+        sudo bash dev-install.sh
+    ```
+
+5. **Defina las credenciales de la BASE DE DATOS REDIS en el archivo .env**
+    
+    ```bash
+        REDIS_PASSWORD=''
+    ```
+
+3. **Crear la network**
     ```bash
         docker network create smart-shell-net
     ```
 
-4. **Despliegue de la Base de Datos:**
+4. **Despliegue de la Base de Datos**
     ```bash
-        cd smart-shell-redis
         docker-compose up -d
     ```
 

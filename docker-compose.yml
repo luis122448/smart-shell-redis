@@ -3,6 +3,8 @@ version: '3.8'  # Puedes ajustar la versión según la que desees usar
 services:
   redis:
     container_name: redis-smart-shell
+    env_file:
+      - ./.env
     image: redis/redis-stack
     ports:
       - "6379:6379"
