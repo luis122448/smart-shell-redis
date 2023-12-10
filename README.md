@@ -33,10 +33,16 @@ Este repositorio tiene como objetivo automatizar el despliegue de una base de da
     ```bash
         docker network create smart-shell-net
     ```
+    
+## Despliegue en Producción
 
-4. **Despliegue de la Base de Datos**
+Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede revisar el archivo docker-compose.yml para conocer los detalles de la configuración.
+Asimismo no se olvide de modificar las variables de entono, en asi archivo .env
+
+1. Ejecutar el script de despliegue
+    
     ```bash
-        docker-compose up -d
+        sudo bash deploy.sh
     ```
 
 ## Verificacion del despliegue
