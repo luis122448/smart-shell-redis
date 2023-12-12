@@ -2,11 +2,12 @@
 
 # Despliegue Automatizado de Base de Datos Redis con Docker
 
-Este repositorio tiene como objetivo automatizar el despliegue de una base de datos Redis en un contenedor de Docker, proporcionando una solución de caché para una aplicación de red.
+Este repositorio tiene como objetivo automatizar el despliegue de una base de datos Redis en un contenedor de Docker, proporcionando una solución de caché para el proyecto Smart Shell.
   
-## Desplegando con DOCKER COMPOSE
+## Configuracion del Entorno
 
 1. **Clonar el Repositorio**
+
     ```bash
         git clone https://github.com/luis122448/smart-shell-redis.git
     ```
@@ -23,13 +24,18 @@ Este repositorio tiene como objetivo automatizar el despliegue de una base de da
         sudo bash dev-install.sh
     ```
 
-5. **Defina las credenciales de la BASE DE DATOS REDIS en el archivo .env**
+4. **Defina las credenciales en el archivo .env**
+
+    ```bash
+        nano .env
+    ```
     
     ```bash
         REDIS_PASSWORD=''
     ```
 
-3. **Crear la network**
+5. **Crear (si no existe) el network**
+
     ```bash
         docker network create smart-shell-net
     ```
@@ -39,7 +45,7 @@ Este repositorio tiene como objetivo automatizar el despliegue de una base de da
 Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede revisar el archivo docker-compose.yml para conocer los detalles de la configuración.
 Asimismo no se olvide de modificar las variables de entono, en asi archivo .env
 
-1. Ejecutar el script de despliegue
+1. **Ejecutar el script de despliegue**
     
     ```bash
         sudo bash deploy.sh
@@ -47,27 +53,32 @@ Asimismo no se olvide de modificar las variables de entono, en asi archivo .env
 
 ## Verificacion del despliegue
 
-1. **Conexion al CONTENEDOR**
+1. **Ingresando a los contenedor**
+
     ```bash
         docker exec -it redis-smart-shell bash
     ```
 
-2. **Conexión a la BASE DE DATOS de Redis**
+2. **Conexión a la Base de Datos**
+
     ```bash
         redis-cli
     ```
 
 3. **Auhenticando**
+
     ```bash
         AUTH <password>
     ```
 
 4. **Verificando conexion**
+
     ```bash
         ping
     ```
 
 5. **Informacion del servidor**
+
     ```bash
         INFO
     ```
