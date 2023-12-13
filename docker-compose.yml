@@ -10,7 +10,7 @@ services:
       - "6379:6379"
     networks:
       - smart-shell-net  # Conexión a la red smart-shell-net
-    command: redis-server --port 6379 --requirepass $REDIS_PASSWORD --maxmemory 1gb --maxmemory-policy volatile-lru
+    command: redis-server --port 6379 --bind 0.0.0.0 --requirepass $REDIS_PASSWORD --maxmemory 1gb --maxmemory-policy volatile-lru
 
 networks:
   smart-shell-net:  # Definición de la red smart-shell-net
