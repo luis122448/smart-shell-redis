@@ -56,7 +56,7 @@ Asimismo no se olvide de modificar las variables de entono, en asi archivo .env
 1. **Ingresando a los contenedor**
 
     ```bash
-        docker exec -it redis-smart-shell bash
+        docker exec -it smart-shell-redis bash
     ```
 
 2. **Conexión a la Base de Datos**
