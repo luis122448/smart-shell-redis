@@ -93,7 +93,7 @@ Asimismo no se olvide de modificar las variables de entono, en asi archivo .env
     ```
 
 ## Contribuciones
-Las contribuciones son bienvenidas. Siéntete libre de mejorar este proyecto, agregar nuevas características o corregir problemas identificados. Para contribuir, crea un Pull Request o abre un Issue.
+Las contribuciones son bienvenidas. Siéntete libre de mejorar este proyecto, agregar nuevas característifcas o corregir problemas identificados. Para contribuir, crea un Pull Request o abre un Issue.
 
 ## Licencia
 Este proyecto está bajo la licencia MIT License.
