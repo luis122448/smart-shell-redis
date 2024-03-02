@@ -24,7 +24,9 @@ Repositorios relacionados a otras bases de datos del proyecto Smart-Shell.
 - [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
 - [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
 
-## Uso
+## Configuracion del Entorno
+
+1. **Clonar el Repositorio**
 
     ```bash
         git clone https://github.com/luis122448/smart-shell-redis.git
@@ -103,7 +105,8 @@ Asimismo no se olvide de modificar las variables de entono, en asi archivo .env
 
 ## Cadena de Conexion
  Configuracion para un proyecto de JAVA con SPRING BOOT (application.properties).
-    ```properties
+
+    ```bash
         # Configuración de Redis
         spring.redis.host=${REDIS_HOST:localhost}
         spring.redis.port=${REDIS_PORT:6379}
