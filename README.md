@@ -26,61 +26,92 @@ Repositorios relacionados a otras bases de datos del proyecto Smart-Shell.
 
 ## Uso
 
-1. **Clonación del Repositorio:**
     ```bash
         git clone https://github.com/luis122448/smart-shell-redis.git
     ```
 
-2. **Modificación del Archivo de Configuración:**
+2. **Ingresar al directorio del proyecto**
+        
     ```bash
         cd smart-shell-redis
-        nano docker-compose.yml
-    ```
-    Modificar la contraseña y la memoria máxima de la base de datos Redis.
-    ```yml
-        ommand: redis-server --requirepass <password> --maxmemory 1gb --maxmemory-policy volatile-lru
     ```
 
-3. **Creación de la Red:**
+3. **Ejecutar el script de instalación**
+    
+    ```bash
+        sudo bash dev-install.sh
+    ```
+
+4. **Defina las credenciales en el archivo .env**
+
+    ```bash
+        nano .env
+    ```
+    
+    ```bash
+        REDIS_PASSWORD=''
+    ```
+
+5. **Crear (si no existe) el network**
+
     ```bash
         docker network create smart-shell-net
     ```
+    
+## Despliegue en Producción
 
-4. **Creación de la Imagen:**
+Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede revisar el archivo docker-compose.yml para conocer los detalles de la configuración.
+Asimismo no se olvide de modificar las variables de entono, en asi archivo .env
+
+1. **Ejecutar el script de despliegue**
+    
     ```bash
-        cd smart-shell-redis
-        docker build -t smart-shell-redis .
+        sudo bash deploy.sh
     ```
 
-5. **Despliegue de la Base de Datos:**
+## Verificacion del despliegue
+
+1. **Ingresando a los contenedor**
+
     ```bash
-        cd smart-shell-redis
-        docker-compose up -d
+        docker exec -it smart-shell-redis bash
     ```
 
-6. **Conexion a la Base de Datos.**
+2. **Conexión a la Base de Datos**
+
     ```bash
-        docker exec -it redis-smart-shell bash
+        redis-cli
     ```
 
-7. **Verificando las versiones.**
+3. **Auhenticando**
+
     ```bash
-        psql --version
-        postgres --version
+        AUTH <password>
     ```
 
-8. **Ingresando con el usuario condigurado**
+4. **Verificando conexion**
+
     ```bash
-        psql -U <usuario> --password --db smart-shell
-        <password>
+        ping
+    ```
 
-        SET search_path TO SMARTSHELL;
+5. **Informacion del servidor**
 
-        SELECT * FROM TBL_ARTICLE;
+    ```bash
+        INFO
+    ```
+
+## Cadena de Conexion
+ Configuracion para un proyecto de JAVA con SPRING BOOT (application.properties).
+    ```properties
+        # Configuración de Redis
+        spring.redis.host=${REDIS_HOST:localhost}
+        spring.redis.port=${REDIS_PORT:6379}
+        spring.redis.password=${REDIS_PASSWORD:mysecurepassword}
     ```
 
 ## Contribuciones
-Las contribuciones son bienvenidas. Siéntete libre de mejorar este proyecto, agregar nuevas características o corregir problemas identificados. Para contribuir, crea un Pull Request o abre un Issue.
+Las contribuciones son bienvenidas. Siéntete libre de mejorar este proyecto, agregar nuevas característifcas o corregir problemas identificados. Para contribuir, crea un Pull Request o abre un Issue.
 
 ## Licencia
 Este proyecto está bajo la licencia MIT License.

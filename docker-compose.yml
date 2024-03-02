@@ -2,13 +2,15 @@ version: '3.8'  # Puedes ajustar la versión según la que desees usar
 
 services:
   redis:
-    container_name: redis-smart-shell
+    container_name: smart-shell-redis
+    env_file:
+      - ./.env
     image: redis/redis-stack
     ports:
       - "6379:6379"
     networks:
       - smart-shell-net  # Conexión a la red smart-shell-net
-    command: redis-server --requirepass 1073741824 --maxmemory 1gb --maxmemory-policy volatile-lru
+    command: redis-server --port 6379 --bind 0.0.0.0 --requirepass $REDIS_PASSWORD --maxmemory 1gb --maxmemory-policy volatile-lru
 
 networks:
   smart-shell-net:  # Definición de la red smart-shell-net
