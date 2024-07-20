@@ -1,5 +1,5 @@
 services:
-  redis:
+  smart-shell-redis:
     container_name: smart-shell-redis
     env_file:
       - ./.env
