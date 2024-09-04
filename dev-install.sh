@@ -1,2 +1,4 @@
-# Creando el archivo .env para las variables de entorno
+#!/bin/bash
+
+# Create environment variables file
 touch .env
