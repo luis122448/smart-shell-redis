@@ -1,120 +1,158 @@
-![Logo del Projecto](./resources/logo.png)
+# Automated Redis Database Deployment with Docker and Kubernetes
 
-# Despliegue Automatizado de Base de Datos Redis con Docker
+![Project Logo](./resources/logo.png)
 
-Este repositorio tiene como objetivo automatizar el despliegue de una base de datos Redis en un contenedor de Docker, proporcionando un servidor de caching para el proyecto de Smart-Shell ( Facturador Electronico ) y Platform-Training ( Plataforma de Capacitacion )
-  
-## Repositorios Relacionados
+This repository is intended to automate the deployment of a Redis database, providing a caching server for the Smart-Shell (Electronic Invoicing) and Platform-Training (Training Platform) projects.
 
-### Repositorio Actual
+## Related Repositories
+
+### Current Repository
 - [Smart-Shell-Redis](https://github.com/luis122448/smart-shell-redis)
 
-### Repositorios Relacionados
-
-Repositorios referidos al BACKEND y FRONTEND de la aplicacion Smart-Shell y Platform-Training.
+### Application Repositories
+Backend and Frontend repositories for the Smart-Shell and Platform-Training applications.
 - [Smart-Shell-Angular](https://github.com/luis122448/smart-shell-angular)
 - [Smart-Shell-SpringBoot](https://github.com/luis122448/smart-shell-springboot)
 - [Platform-Training-Angular](https://github.com/luis122448/platform-training-angular)
 - [Platform-Training-SpringBoot](https://github.com/luis122448/platform-training-springboot)
 
-Repositorios relacionado a la automatizacion de despliegue.
+### Automation Repositories
 - [Smart-Shell-Bash](https://github.com/luis122448/smart-shell-bash)
 
-Repositorios relacionados a otras bases de datos del proyecto Smart-Shell.
+### Other Database Repositories
 - [Smart-Shell-Mongo](https://github.com/luis122448/smart-shell-mongo)
 - [Smart-Shell-Postgres](https://github.com/luis122448/smart-shell-postgres)
 
-## Configuracion del Entorno
+---
 
-1. **Clonar el Repositorio**
+## Deployment Methods
 
-    ```bash
-        git clone https://github.com/luis122448/smart-shell-redis.git
-    ```
+This project supports two deployment methods: Docker Compose for simple, single-machine setups, and Kubernetes for scalable, production-grade environments.
 
-2. **Ingresar al directorio del proyecto**
-        
-    ```bash
-        cd smart-shell-redis
-    ```
+### 1. Deployment with Docker Compose
 
-3. **Ejecutar el script de instalación**
+Follow these steps to deploy Redis using Docker Compose.
+
+#### Environment Setup
+
+1.  **Clone the Repository**
     
-    ```bash
-        sudo bash dev-install.sh
-    ```
+```bash
+git clone https://github.com/luis122448/smart-shell-redis.git
+```
 
-4. **Defina las credenciales en el archivo .env**
-
-    ```bash
-        nano .env
-    ```
+2.  **Enter the project directory**
     
-    ```bash
-        REDIS_PASSWORD=''
-    ```
+```bash
+cd smart-shell-redis
+```
 
-5. **Crear (si no existe) el network**
-
-    ```bash
-        docker network create smart-shell-net
-    ```
+3.  **Run the installation script**
     
-## Despliegue en Producción
+```bash
+sudo bash install.sh
+```
 
-Para el despliegue en producción se ha utilizado Docker y Docker Compose, puede revisar el archivo docker-compose.yml para conocer los detalles de la configuración.
-Asimismo no se olvide de modificar las variables de entono, en asi archivo .env
-
-1. **Ejecutar el script de despliegue**
+4.  **Define credentials in the .env file**
     
-    ```bash
-        sudo bash deploy.sh
-    ```
+Create or edit the `.env` file to set your Redis password.
 
-## Verificacion del despliegue
+```bash
+nano .env
+```
 
-1. **Ingresando a los contenedor**
+```env
+REDIS_PASSWORD='your-strong-password'
+```
 
-    ```bash
-        docker exec -it smart-shell-redis bash
-    ```
+5.  **Create the Docker network (if it doesn't exist)**
+    
+```bash
+docker network create smart-shell-net
+```
 
-2. **Conexión a la Base de Datos**
+#### Production Deployment
 
-    ```bash
-        redis-cli
-    ```
+For production, this project uses Docker and Docker Compose. You can review the `docker-compose.yml` file for configuration details. Ensure your `.env` file is correctly configured.
 
-3. **Auhenticando**
+1.  **Run the deployment script**
+    
+```bash
+sudo bash deploy.sh
+```
 
-    ```bash
-        AUTH <password>
-    ```
+### 2. Deployment with Kubernetes
 
-4. **Verificando conexion**
+For a scalable and resilient production environment, we recommend deploying to Kubernetes.
 
-    ```bash
-        ping
-    ```
+The detailed guide for the Kubernetes deployment, including security, networking, and password management, is located in a separate document.
 
-5. **Informacion del servidor**
+**Please refer to the [Kubernetes Deployment Guide](./kubernetes/kubernetes-readme.md) for step-by-step instructions.**
 
-    ```bash
-        INFO
-    ```
+---
 
-## Cadena de Conexion
- Configuracion para un proyecto de JAVA con SPRING BOOT (application.properties).
+## Verifying the Deployment
 
-    ```bash
-        # Configuración de Redis
-        spring.redis.host=${REDIS_HOST:localhost}
-        spring.redis.port=${REDIS_PORT:6379}
-        spring.redis.password=${REDIS_PASSWORD:mysecurepassword}
-    ```
+To verify that your Redis instance is running correctly, you will need `redis-cli`, the command-line interface for Redis.
 
-## Contribuciones
-Las contribuciones son bienvenidas. Siéntete libre de mejorar este proyecto, agregar nuevas característifcas o corregir problemas identificados. Para contribuir, crea un Pull Request o abre un Issue.
+#### 1. Installing `redis-cli`
 
-## Licencia
-Este proyecto está bajo la licencia MIT License.
+-   **Debian/Ubuntu**:
+    
+```bash
+sudo apt-get update && sudo apt-get install redis-tools
+```
+
+-   **CentOS/RHEL/Fedora**:
+    
+```bash
+sudo dnf install redis # Or sudo yum install redis
+```
+
+-   **macOS (with Homebrew)**:
+    
+```bash
+brew install redis
+```
+
+#### 2. Connecting to the Database
+
+Connect to Redis using the appropriate IP address and your password.
+
+-   **For Docker Compose:** Connect to your local machine's IP or `localhost`.
+-   **For Kubernetes:** Use the external IP assigned by the LoadBalancer (e.g., `192.168.100.241`).
+
+```bash
+# Replace <ip-address> and <password>
+redis-cli -h <ip-address> -a '<password>'
+```
+
+#### 3. Testing the Connection
+
+Once connected, run the `PING` command. Redis should reply with `PONG`.
+
+```
+127.0.0.1:6379> PING
+PONG
+```
+
+---
+
+## Connection String for Spring Boot
+
+Configuration for a Java project with Spring Boot (`application.properties`).
+
+```properties
+# Redis Configuration
+spring.redis.host=${REDIS_HOST:localhost}
+spring.redis.port=${REDIS_PORT:6379}
+spring.redis.password=${REDIS_PASSWORD:your-strong-password}
+```
+
+## Contributions
+
+Contributions are welcome. Feel free to improve this project, add new features, or fix identified issues. To contribute, please create a Pull Request or open an Issue.
+
+## License
+
+This project is under the MIT License.
