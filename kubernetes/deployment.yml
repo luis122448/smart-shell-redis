@@ -15,9 +15,10 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:latest
+        image: redis:7-alpine
         ports:
         - containerPort: 6379
+        args: ["redis-server", "--requirepass", "$(REDIS_PASSWORD)"]
         env:
         - name: REDIS_PASSWORD
           valueFrom:
