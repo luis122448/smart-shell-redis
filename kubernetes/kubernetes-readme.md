@@ -20,7 +20,7 @@ Instead of writing a YAML file, we create the secret directly on the command lin
 
 ```bash
 kubectl create secret generic redis-secret \
-  --from-literal=password='your-strong-password' \
+  --from-literal=REDIS_PASSWORD='your-strong-password' \
   -n smart-shell-production
 ```
 
@@ -58,7 +58,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: redis-secret
-              key: password
+              key: REDIS_PASSWORD
 ```
 
 ---
