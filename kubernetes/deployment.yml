@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:7-alpine
+        image: luis122448/smart-shell-redis:latest
         ports:
         - containerPort: 6379
-        args: ["redis-server", "--requirepass", "$(REDIS_PASSWORD)"]
+        args: ["redis-server", "/usr/local/etc/redis/redis.conf", "--requirepass", "$(REDIS_PASSWORD)"]
         env:
         - name: REDIS_PASSWORD
           valueFrom:
