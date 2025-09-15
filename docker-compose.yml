@@ -8,12 +8,11 @@ services:
       - ./.env
     environment:
       SMART_SHELL_REDIS_PASSWORD: ${SMART_SHELL_REDIS_PASSWORD}
-    image: redis/redis-stack
     ports:
       - "${SMART_SHELL_REDIS_PORT}:6379"
     networks:
       - smart-shell-net
-    command: redis-server --port 6379 --bind 0.0.0.0 --requirepass $SMART_SHELL_REDIS_PASSWORD --maxmemory 1gb --maxmemory-policy volatile-lru
+    command: redis-server /usr/local/etc/redis/redis.conf --requirepass ${SMART_SHELL_REDIS_PASSWORD}
     restart: unless-stopped
 
 networks:
