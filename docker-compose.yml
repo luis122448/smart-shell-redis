@@ -1,8 +1,13 @@
 services:
   app:
     container_name: smart-shell-redis
+    build:
+      context: .
+      dockerfile: Dockerfile
     env_file:
       - ./.env
+    environment:
+      SMART_SHELL_REDIS_PASSWORD: ${SMART_SHELL_REDIS_PASSWORD}
     image: redis/redis-stack
     ports:
       - "${SMART_SHELL_REDIS_PORT}:6379"
